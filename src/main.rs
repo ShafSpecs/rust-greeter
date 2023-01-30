@@ -3,15 +3,16 @@ use clap::Parser;
 #[derive(Parser, Debug)]
 struct Args {
     #[clap(short, long)]
-    key: String,
+    name: String,
     
     #[clap(short, long)]
-    value: String,
+    count: u8,
 }
 
 fn main() {
-    let key = std::env::args().nth(1).expect("Expected a key");
-    let value = std::env::args().nth(2).expect("Expected a value");
+    let args = Args::parse();
 
-    println!("{} is the key, {} is the value", key, value);
+   for _ in 0..args.count {
+       println!("Hello {}!", args.name)
+   }
 }
